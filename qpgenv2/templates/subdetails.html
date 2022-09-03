@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block css %}
+input::-webkit-input-placeholder {
+            font-size: 15px;
+            color: #c9c9c9;
+        }
+        input[type=text]{
+            padding-left: 15px;
+        }
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.heading{
+	text-align: center;
+}
+.second-form{
+	display:flex;
+	flex-direction:column;
+}
+
+.hidden{
+	display:none;
+}
+.copara{
+	text-align:center;
+}
+.input-field{
+	color: white;
+    background-color: #224957;
+    width: 200px;
+    border: 0px solid #aaa;
+    font-size: 19px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 40px;
+}
+.course-outcomes-no{
+	width:70px;
+}
+.submit-button{
+            width: 200px;
+            background-color: #20df7f;
+            font-size: 20px;
+            border: 0px solid #aaa;
+            border-radius: 10px;
+            height: 40px;
+            color: white;
+        }  
+.done{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+{% endblock css %}
+
+{% block html %}
+<form method="POST"><br><br><br><br>
+<h1 class="heading">Enter Subject Details</h1><br><br>
+<div class="container">
+<div class="first-form">
+{{ form.as_p }}{% csrf_token %}
+</div><br>
+<div class="second-form">
+	<p class="copara">Course Outcomes</p><br>
+{% for field in form2 %}{% csrf_token %}
+{% if forloop.counter0|divisibleby:2 %}
+	<div>{{ field }}
+{% else %}
+	{{ field }}<br></div>
+{% endif %}
+{% endfor %}
+</div>
+<label for="cobj">Enter no. of course objectives</label><br>
+<input type="text" name="cobj" id="cobjno" class=" input-field" placeholder="'5'">
+<button id="cobutton" class="submit-button">submit</button><br>
+<div class="third-form">
+{{ form3.as_p }}{% csrf_token %}
+<input type="submit" class="submit-button done" value="done">
+</div>
+</div>
+
+</form>
+{% endblock html%}
+
+{% block js %}
+const allInputFields =  document.querySelectorAll(".email")
+const cobutton = document.getElementById("cobutton");
+const cobjno = document.getElementById("cobjno");
+
+cobutton.addEventListener("click", ()=>{
+	let num = cobjno.value
+	cobjno.remove()
+	cobutton.remove()
+	for(i = 0; i < num ;i++){
+	allInputFields[i].classList.toggle("hidden")
+}
+})
+{% endblock js %}

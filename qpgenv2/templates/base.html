@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;0,700;1,400&display=swap');
+*{
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: white
+}
+
+body{
+    background-color: #093545;
+}
+
+header{
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    background-color: #20df7f;
+}
+
+nav li {
+    text-decoration: none;
+    display: inline-block;
+    list-style: none;
+    padding: 0px 20px;
+}
+nav li a{
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+}
+header li a{
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+}
+header li{
+    text-decoration: none;
+    display: inline-block;
+}
+.togglebtn{
+    position: absolute;
+    top: 2.3rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+.togglebtn .bar{
+    height: 3px;
+    width: 100%;
+    background-color: #000;
+}
+@media (max-width: 650px){
+    .list{
+        margin-top: 20px;
+        display: none;
+    }
+    .item5{
+        margin-top: 10px;
+        display: none;
+    }
+    .list.active{
+        margin-top: 20px;
+        display: block;
+    }
+    .item5.active{
+        margin-top: 10px;
+        display: block;
+    }
+    .togglebtn{
+        display: flex;
+    }
+    header{
+        flex-direction: column;
+    }
+}
+
+        {% block css %}
+        {% endblock css %}
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">QPGen</h1>
+        <nav class="navbar">
+            <div class="togglebtn" id="togglebtn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="list" id="list">
+                <li class="listitem">
+                    <a href="#" class="navlink">item 1</a>
+                </li>
+                <li class="listitem">
+                    <a href="#" class="navlink">item 2</a>
+                </li>
+                <li class="listitem">
+                    <a href="#" class="navlink">item 3</a>
+                </li>
+                <li class="listitem">
+                    <a href="#" class="navlink">item 4</a>
+                </li>
+            </ul>
+        </nav>
+        <li class="item5" id="item5">
+            <a href="#" class="navlink">item 5</a>
+        </li>
+    </header>
+    {% block html %}
+    {% endblock %}
+    <script>
+const togglebtn = document.getElementById('togglebtn');
+const listitems = document.getElementById('list');
+const item5 = document.getElementById('item5');
+togglebtn.addEventListener('click', () => {
+    listitems.classList.toggle('active');
+    item5.classList.toggle('active');
+})  
+{% block js %}
+{% endblock %}
+    </script>
+
+
+</body>
+</html>

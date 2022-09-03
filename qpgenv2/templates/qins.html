@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block css %}
+button, input{
+	color: black;
+}
+.hidden{
+	display:none;
+}
+{% endblock css %}
+{% block html %}
+<form method="POST">{% csrf_token %}
+	{{ form.as_p }}
+	{{ form2.as_p }}
+	{{ form3.as_p }}
+	<input type="submit">
+</form>
+{% endblock html%}
+{% block js %}
+const allInputFields =  document.querySelectorAll(".email")
+console.log(allInputFields);
+for(i=0;i<3;i++){
+	allInputFields[i].classList.toggle("hidden")
+}
+{% endblock js%}
