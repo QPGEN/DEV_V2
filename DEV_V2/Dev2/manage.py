@@ -4,6 +4,7 @@ import os
 import sys
 
 def summa():
+    print("!")
     pass
 def main():
     """Run administrative tasks."""
