@@ -6,6 +6,7 @@ import sys
 def summa():
     print("!")
     print("@")
+    print('$')
     pass
 def main():
     """Run administrative tasks."""
