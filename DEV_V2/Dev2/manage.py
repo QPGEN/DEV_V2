@@ -7,6 +7,7 @@ def summa():
     print("!")
     print("@")
     print('$')
+    print('s')
     pass
 def main():
     """Run administrative tasks."""
